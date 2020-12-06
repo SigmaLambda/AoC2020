@@ -4,7 +4,7 @@ let test1 = [ 1721; 979; 366; 299; 675; 1456 ]
 
 
 let input =
-    System.IO.File.ReadAllLines "./input/Day1.txt"
+    System.IO.File.ReadAllLines "./Input/Day1.txt"
     |> Array.map int
     |> Array.toList
 

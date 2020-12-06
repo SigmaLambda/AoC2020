@@ -11,9 +11,10 @@ let main argv =
     Day2.Day2b () |> ignore
     Day4.RunTest4 () |> ignore
     Day4.Day4a () |> ignore
-    Day4.Day4bTest () |> ignore
-    Day4.Day4b () |> ignore
-
+    //Day4.Day4bTest () |> ignore
+    //Day4.Day4b () |> ignore
+    Day6.Day6 () |> ignore
+    Day6.Day6b () |> ignore
 
     
     printfn "Hello World from F#!"

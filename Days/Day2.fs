@@ -1,7 +1,7 @@
 module Day2
 
 let input =
-    System.IO.File.ReadAllLines "./input/Day2.txt"
+    System.IO.File.ReadAllLines "./Input/Day2.txt"
     |> Array.toList
 
 let test1 =
