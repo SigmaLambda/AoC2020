@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "m+hT/3u22E6Qnm4tyzyiMoE9p7r4ME5A8DQthhP2xnbGWiQHgQ4SqjOZN5N46CvkFoIFqBlY7jlwvlocSm8wSQ==",
+  "success": true,
+  "projectFilePath": "C:\\codeprojects\\aoc20\\aoc20.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Christer.Lindberg\\.nuget\\packages\\fsharp.core\\4.7.0\\fsharp.core.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
