@@ -3,20 +3,22 @@ module Day7
 type Bag =
     { Quant: int
       Desc: string
-      Color: string }
+      Color: string
+      Key: string }
 
 
-let CreateContainerBag (s: string) =
+let CreateKey (s: string) =
     let newS = s.Trim().Split(" ")
-    { Quant = 99
-      Desc = newS.[0]
-      Color = newS.[1] }
+    String.concat " " [ newS.[0]; newS.[1] ]
+
+
 
 let CreateBag (s: string []) =
+    // printfn "%A" s
     { Quant = (int s.[0])
       Desc = s.[1]
-      Color = s.[2] }
-
+      Color = s.[2]
+      Key = String.concat " " [ s.[1]; s.[2] ] }
 
 
 let CreateBags (cs: string []) =
@@ -26,38 +28,77 @@ let CreateBags (cs: string []) =
     if strings.[0].[0] = "no" then Array.empty else (Array.map CreateBag strings)
 
 
-
-
-let testinput =
-    System.IO.File.ReadAllLines ".//Input//Day7Test.txt"
+let CreateInput path =
+    System.IO.File.ReadAllLines path
     |> Array.map (fun l -> l.Split(" bags contain "))
     |> Array.map (fun l -> l.[0], l.[1].Split(","))
-    |> Array.map (fun (s, ss) -> (CreateContainerBag s), Array.toList (CreateBags ss))
-    |> List.ofArray
+    |> Array.map (fun (s, ss) -> (CreateKey s), Array.toList (CreateBags ss))
+    |> Array.toList
 
 
 
-let target = CreateBag [| "99"; "shiny"; "gold" |]
 
-let rec Search (t: Bag) (bs: Bag list) (m: (Bag * Bag list) list): int =
+let BagCanContain target key (values: Bag list) dict =
+    if values.Length > 0 then
+        let canContain =
+            values
+            |> List.map (fun v -> Some(v.Key = target || List.contains v.Key dict))
+            |> List.choose id
+            |> List.reduce (||)
 
-    List.sumBy (fun b -> if b = t then 1 else 0) bs
+        match canContain with
+        | false -> None
+        | true -> Some key
+    else
+        None
 
-    + List.sumBy (fun b ->
-        let next =
-            { Quant = b.Quant
-              Desc = b.Desc
-              Color = b.Color }
+let rec LoopAllBags target (allbags: (string * Bag list) list) dict =
 
-        printfn "%A" next
-        match List.tryFind (fun (b, bs) -> b = next) m with
-        | None -> 0
-        | Some bbs -> Search t (snd bbs) m) bs
+    let (res: string list) =
+        allbags
+        |> List.map (fun (key: string, vs: Bag list) -> BagCanContain target key vs dict)
+        |> List.choose id
+        |> List.distinct
 
+    let distinct = res @ dict |> List.distinct
+    if distinct.Length > dict.Length then LoopAllBags target allbags distinct else dict
+
+
+
+// let rec AddBagsInShinyBag (targetValues: Bag list) (allbags: Map<string, Bag list>) acc =
+
+//     targetValues
+//     |> Map.map (fun v ->
+//         v.Quant * AddBagsInShinyBag v allbags)
+
+
+// let da7B () =
+
+
+
+
+let target = "shiny gold"
+
+let Day7Run path =
+    let res =
+        let input = (CreateInput path)
+        LoopAllBags target input List.Empty
+
+
+    printfn "Day7a %A" res |> ignore
+    res.Length
 
 let Day7Test () =
-    let res =
-        testinput
-        |> List.sumBy (fun (t, ts) -> Search target ts testinput)
+    let res = Day7Run ".//Input//Day7Test.txt"
+    //    Day7Run "..//..//..//Input//Day7Test.txt"
 
-    printfn "Day7a %d" res
+    printfn "Day7 Test: %d" res
+
+Day7Test()
+
+let Day7A () =
+    //let res = Day7Run "..//..//..//Input//Day7.txt"
+    let res = Day7Run ".//Input//Day7.txt"
+    printfn "Day7 A: %d" res
+
+Day7A()
