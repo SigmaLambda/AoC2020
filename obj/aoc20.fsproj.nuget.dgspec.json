@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\codeprojects\\aoc20\\aoc20.fsproj": {}
+    "c:\\codeprojects\\aoc20\\aoc20.fsproj": {}
   },
   "projects": {
-    "C:\\codeprojects\\aoc20\\aoc20.fsproj": {
+    "c:\\codeprojects\\aoc20\\aoc20.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\codeprojects\\aoc20\\aoc20.fsproj",
+        "projectUniqueName": "c:\\codeprojects\\aoc20\\aoc20.fsproj",
         "projectName": "aoc20",
-        "projectPath": "C:\\codeprojects\\aoc20\\aoc20.fsproj",
+        "projectPath": "c:\\codeprojects\\aoc20\\aoc20.fsproj",
         "packagesPath": "C:\\Users\\Christer.Lindberg\\.nuget\\packages\\",
-        "outputPath": "C:\\codeprojects\\aoc20\\obj\\",
+        "outputPath": "c:\\codeprojects\\aoc20\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
